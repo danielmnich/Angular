@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class PostsService {
   private apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getPosts(): Observable<any> {
     return this.http.get(this.apiUrl);
@@ -22,6 +22,7 @@ export class PostsService {
     return this.http.post(this.apiUrl, post);
   }
 
+  // on the backend side this should be a put
   updatePost(post: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/${post.id}`, post);
   }

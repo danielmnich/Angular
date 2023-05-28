@@ -10,7 +10,7 @@ import { AuthService } from '../auth.service';
 export class LoginComponent {
   username = '';
   password = '';
-  returnUrl: string;
+  returnUrl: string = '/';
   error = '';
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {
@@ -21,9 +21,10 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe(
       () => {
         this.router.navigateByUrl(this.returnUrl);
+        this.error = ''; // clear error message if login is successful
       },
-      error => {
-        this.error = error.error.message;
+      () => {
+        this.error = 'Invalid username or password.';
       }
     );
   }
