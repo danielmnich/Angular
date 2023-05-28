@@ -6,13 +6,13 @@ import { AppComponent } from './app.component';
 import { RightSideListComponent } from './right-side-list/right-side-list.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { PostFormComponent } from './post-form/post-form.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import {JwtModule} from "@auth0/angular-jwt";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { JWT_OPTIONS, JwtHelperService, JwtModule } from "@auth0/angular-jwt";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LoginComponent } from './login/login.component';
 
 export function tokenGetter(): string | null {
@@ -44,7 +44,13 @@ export function tokenGetter(): string | null {
       },
     }),
   ],
-  providers: [],
+  providers: [HttpClientModule,
+    {
+      provide: JWT_OPTIONS,
+      useValue: JWT_OPTIONS
+    },
+    JwtHelperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
