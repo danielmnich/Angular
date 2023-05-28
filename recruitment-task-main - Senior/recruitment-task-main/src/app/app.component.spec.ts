@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { FooterComponent } from './footer/footer.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -11,8 +13,10 @@ describe('AppComponent', () => {
         RouterTestingModule, HttpClientTestingModule
       ],
       declarations: [
-        AppComponent, HeaderComponent
-      ]
+        AppComponent, HeaderComponent, FooterComponent
+      ], providers: [
+        JwtHelperService,
+        { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }]
     }).compileComponents();
   });
 
